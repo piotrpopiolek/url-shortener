@@ -1,0 +1,58 @@
+[project]
+name = "url-shortener"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Piotr Popiołek", email = "piotr.popiolek93@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "django>=5.2,<5.3",
+    "djangorestframework>=3.18.3",
+    "gunicorn>=26.2.0",
+    "psycopg[binary]>=3.3.6",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+url-shortener = "url_shortener:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "django-stubs[compatible-mypy]>=6.1.2",
+    "djangorestframework-stubs[compatible-mypy]>=3.18.1",
+    "httpx>=0.28.1",
+    "mypy>=2.3.1",
+    "pytest>=9.1.1",
+    "pytest-django>=4.14.0",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "DJ", "SIM", "RUF"]
+
+[tool.mypy]
+strict = true
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+
+[[tool.mypy.overrides]]
+module = ["*.migrations.*"]
+ignore_errors = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = ["e2e"]
