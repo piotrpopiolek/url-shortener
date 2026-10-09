@@ -45,6 +45,7 @@ def create_short_url(
 
 
 def get_original_url(code: str) -> str:
+    """Get the original URL for the given code."""
     try:
         link = Link.objects.get(code=code)
     except Link.DoesNotExist:
@@ -64,4 +65,5 @@ def extract_code(short_url: str) -> str:
 
 
 def expand_short_url(short_url: str) -> str:
+    """Expand the given short URL to the original URL."""
     return get_original_url(extract_code(short_url))
