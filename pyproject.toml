@@ -40,6 +40,9 @@ target-version = "py314"
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "DJ", "SIM", "RUF"]
 
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/*.py" = ["RUF012"]
+
 [tool.mypy]
 strict = true
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]

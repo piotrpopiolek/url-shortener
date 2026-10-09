@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,24 +23,26 @@ load_dotenv(BASE_DIR / ".env")
 def env_str(name: str, default: str) -> str:
     return os.environ.get(name, default)
 
+
 def env_bool(name: str, default: bool) -> bool:
     value = os.environ.get(name)
     if value is None:
         return default
-    return value.lower() in {'true', '1'}
+    return value.lower() in {"true", "1"}
+
 
 def env_list(name: str, default: str) -> list[str]:
     value = os.environ.get(name, default)
-    return [item.strip() for item in value.split(',')]
+    return [item.strip() for item in value.split(",")]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'rest_framework',
-    'shortener',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "rest_framework",
+    "shortener",
 ]
 
 REST_FRAMEWORK = {
@@ -57,31 +60,31 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
 
-SECRET_KEY = env_str('SECRET_KEY', 'long_secret_key_randomly_generated')
-DEBUG = env_bool('DEBUG', False)
-ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+SECRET_KEY = env_str("SECRET_KEY", "long_secret_key_randomly_generated")
+DEBUG = env_bool("DEBUG", False)
+ALLOWED_HOSTS = env_list("ALLOWED_HOSTS", "localhost,127.0.0.1")
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env_str('POSTGRES_DB', 'postgres'),
-        'USER': env_str('POSTGRES_USER', 'postgres'),
-        'PASSWORD': env_str('POSTGRES_PASSWORD', 'postgres'),
-        'HOST': env_str('POSTGRES_HOST', 'localhost'),
-        'PORT': env_str('POSTGRES_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env_str("POSTGRES_DB", "postgres"),
+        "USER": env_str("POSTGRES_USER", "postgres"),
+        "PASSWORD": env_str("POSTGRES_PASSWORD", "postgres"),
+        "HOST": env_str("POSTGRES_HOST", "localhost"),
+        "PORT": env_str("POSTGRES_PORT", "5432"),
     }
 }
 
@@ -89,9 +92,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -101,4 +104,4 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

@@ -1,0 +1,1 @@
+Dopuszczalne linki kończą się bez /
