@@ -5,8 +5,8 @@ from shortener.services import (
     CodeGenerationError,
     ShortURLNotFoundError,
     create_short_url,
-    get_original_url,
     expand_short_url,
+    get_original_url,
 )
 
 
@@ -17,6 +17,7 @@ def test_create_short_url_persists_original_url() -> None:
     assert link.url == original_url
     assert Link.objects.get(code=link.code).url == original_url
 
+
 @pytest.mark.django_db
 def test_create_short_url_same_url_twice_gives_different_codes() -> None:
     original_url = "https://example.com/very/long"
@@ -24,6 +25,7 @@ def test_create_short_url_same_url_twice_gives_different_codes() -> None:
     link2 = create_short_url(original_url)
     assert link1.code != link2.code
     assert Link.objects.filter(url=original_url).count() == 2
+
 
 @pytest.mark.django_db
 def test_create_short_url_retries_on_collision() -> None:
@@ -35,6 +37,7 @@ def test_create_short_url_retries_on_collision() -> None:
     )
     assert link.code == "fresh01"
 
+
 @pytest.mark.django_db
 def test_create_short_url_raises_error_after_max_attempts() -> None:
     Link.objects.create(code="taken01", url="https://example.com/very/long")
@@ -44,10 +47,12 @@ def test_create_short_url_raises_error_after_max_attempts() -> None:
             generate=lambda: "taken01",
         )
 
+
 @pytest.mark.django_db
 def test_get_original_url_returns_url_for_known_code() -> None:
     Link.objects.create(code="known01", url="https://example.com/very/long")
     assert get_original_url("known01") == "https://example.com/very/long"
+
 
 @pytest.mark.django_db
 def test_get_original_url_raises_error_for_unknown_code() -> None:

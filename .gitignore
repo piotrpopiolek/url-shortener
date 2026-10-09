@@ -2,5 +2,5 @@
 .mypy_cache
 .ruff_cache
 .pytest_cache
-.venv/pyvenv.cfg
+.venv/
 __pycache__/
