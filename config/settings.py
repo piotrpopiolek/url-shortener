@@ -84,7 +84,7 @@ DATABASES = {
         "USER": env_str("POSTGRES_USER", "postgres"),
         "PASSWORD": env_str("POSTGRES_PASSWORD", "postgres"),
         "HOST": env_str("POSTGRES_HOST", "localhost"),
-        "PORT": env_str("POSTGRES_PORT", "5432"),
+        "PORT": env_str("POSTGRES_PORT", "5435"),
     }
 }
 
