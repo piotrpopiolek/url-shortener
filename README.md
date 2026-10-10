@@ -12,6 +12,8 @@ docker compose up --build
 
 API jest na `http://localhost:8005`. W kontenerze aplikacja słucha portu 8000, na hoście jest wystawiona jako 8005. Baza Postgresa z hosta jest na porcie 5435.
 
+Na produkcji `SECRET_KEY` musi przyjść ze zmiennej środowiskowej. Domyślna wartość `long_secret_key_randomly_generated` służy tylko do lokalnego uruchomienia.
+
 ## API
 
 | Metoda i ścieżka | Wejście | Sukces | Błędy |

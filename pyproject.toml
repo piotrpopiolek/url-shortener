@@ -1,7 +1,7 @@
 [project]
 name = "url-shortener"
 version = "0.1.0"
-description = "Add your description here"
+description = "HTTP service that shortens URLs and redirects to the original address."
 readme = "README.md"
 authors = [
     { name = "Piotr Popiołek", email = "piotr.popiolek93@gmail.com" }
@@ -15,12 +15,12 @@ dependencies = [
     "python-dotenv>=1.2.4",
 ]
 
-[project.scripts]
-url-shortener = "url_shortener:main"
-
 [build-system]
 requires = ["uv_build>=0.12.23,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv]
+package = false
 
 [dependency-groups]
 dev = [
